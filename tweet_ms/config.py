@@ -1,5 +1,7 @@
-# tweet_ms/config.py
-class Config:
-    DEBUG = True  # Set to False in production
-    SECRET_KEY = 'your_secret_key'
-    # Add more configuration variables as needed
+import os
+   
+DATABASE_NAME = 'e2101083_TweetDB'
+DATABASE_HOST = 'mariadb.vamk.fi'
+DATABASE_PORT = 3306
+DATABASE_USER = 'e2101083'
+DATABASE_PASSWORD = '9SbjzjcK6hQ'

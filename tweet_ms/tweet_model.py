@@ -1,8 +1,6 @@
 from peewee import *
 from datetime import datetime
-
-# Database configuration
-db = MySQLDatabase('e2101083_TweetDB', host='mariadb.vamk.fi', port=3306, user='e2101083', password='9SbjzjcK6hQ')
+import config
 
 # Define the Tweet model
 class Tweet(Model):
@@ -13,11 +11,21 @@ class Tweet(Model):
     likes_count = IntegerField(default=0)
 
     class Meta:
-        database = db
-        table_name = 'TweetTable'  # Define the name of the table in the database
-
+        database = None  # Initialize the database as None for now
     def __repr__(self):
         return f'<TweetTable {self.tweet_id}>'
+
+# Database configuration
+db = MySQLDatabase(
+    config.DATABASE_NAME,
+    host=config.DATABASE_HOST,
+    port=config.DATABASE_PORT,
+    user=config.DATABASE_USER,
+    password=config.DATABASE_PASSWORD
+)
+
+# Set the database instance for the Tweet model after fetching configuration
+Tweet._meta.database = db
 
 # Connect to the database
 db.connect()
@@ -36,4 +44,4 @@ db.connect()
 # new_tweet.save()
 
 # Close the database connection (optional)
-#db.close()
+db.close()
