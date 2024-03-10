@@ -17,5 +17,12 @@ def create_tweet():
 @app.route('/tweets/<int:user_id>', methods=['GET'])
 def get_tweets(user_id):
     tweets = Tweet.select().where(Tweet.user_id == user_id)
-    tweet_data = [{'tweet_id': tweet.tweet_id, 'tweet_content': tweet.tweet_content, 'timestamp': tweet.timestamp, 'likes_count': tweet.likes_count} for tweet in tweets]
+    tweet_data = [{
+        'tweet_id': tweet.tweet_id,
+        'user_id': tweet.user_id,
+        'tweet_content': tweet.tweet_content,
+        'timestamp': tweet.timestamp.strftime('%Y-%m-%d %H:%M:%S'),  # Format timestamp as string
+        'likes_count': tweet.likes_count
+    } for tweet in tweets]
     return jsonify(tweet_data)
+
