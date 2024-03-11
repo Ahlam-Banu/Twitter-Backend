@@ -1,5 +1,3 @@
-import os
-   
 DATABASE_NAME = 'e2101083_TweetDB'
 DATABASE_HOST = 'mariadb.vamk.fi'
 DATABASE_PORT = 3306

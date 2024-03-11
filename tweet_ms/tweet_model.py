@@ -1,19 +1,6 @@
 from peewee import *
 from datetime import datetime
-import config
-
-# Define the Tweet model
-class Tweet(Model):
-    tweet_id = AutoField(primary_key=True)
-    user_id = IntegerField()
-    tweet_content = TextField()
-    timestamp = DateTimeField(default=datetime.now)
-    likes_count = IntegerField(default=0)
-
-    class Meta:
-        database = None  # Initialize the database as None for now
-    def __repr__(self):
-        return f'<TweetTable {self.tweet_id}>'
+from tweet_ms import config
 
 # Database configuration
 db = MySQLDatabase(
@@ -24,6 +11,20 @@ db = MySQLDatabase(
     password=config.DATABASE_PASSWORD
 )
 
+# Define the Tweet model
+class Tweet(Model):
+    tweet_id = AutoField(primary_key=True)
+    user_id = IntegerField()
+    tweet_content = TextField()
+    timestamp = DateTimeField(default=datetime.now)
+    likes_count = IntegerField(default=0)
+
+    class Meta:
+        database = db
+
+    def __repr__(self):
+        return f'<Tweet(tweet_id={self.tweet_id}, user_id={self.user_id}, tweet_content={self.tweet_content[:50]}, timestamp={self.timestamp}, likes_count={self.likes_count})>'
+
 # Set the database instance for the Tweet model after fetching configuration
 Tweet._meta.database = db
 
@@ -32,16 +33,6 @@ db.connect()
 
 # Create the tables
 #db.create_tables([Tweet])
-
-# Create a new row
-# new_tweet = Tweet(
-#     user_id=124,  # Replace with the actual values for each column
-#     tweet_content="This is 2ND tweet.",  # Replace with the actual values for each column
-#     timestamp=datetime.now(),  # Replace with the actual values for each column
-#     likes_count=1  # Replace with the actual values for each column
-# )
-# # Save the new row to the database
-# new_tweet.save()
 
 # Close the database connection (optional)
 db.close()
