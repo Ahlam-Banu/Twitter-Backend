@@ -39,7 +39,12 @@ TO BE ADDED
 
 ## API Endpoints
 
-TO BE ADDED (each Microservices will have documentation)
+- [Link to User Service API Documentation]
+- [Link to Tweet Service API Documentation](/docs/tweet_ms_api.md)
+- [Link to Timeline Service API Documentation]
+- [Link to Follow Service API Documentation]
+- [Link to Gateway Service API Documentation]
+- [Link to Fanout Service API Documentation]
 
 ## Testing
 
