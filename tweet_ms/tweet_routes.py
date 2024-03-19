@@ -29,30 +29,6 @@ def get_tweets(user_id):
     except DoesNotExist:
         return jsonify({'message': 'No tweets found for the specified user'}), 404
 
-# Route to retrieve all tweets
-@app.route('/tweets', methods=['GET'])
-def get_all_tweets():
-    try:
-        # Retrieve all tweets from the database
-        tweets = Tweet.select()
-
-        # Serialize tweet data
-        tweet_data = [{
-            'tweet_id': tweet.tweet_id,
-            'user_id': tweet.user_id,
-            'tweet_content': tweet.tweet_content,
-            'timestamp': tweet.timestamp.strftime('%Y-%m-%d %H:%M:%S'),  # Format timestamp as string
-            'likes_count': tweet.likes_count
-        } for tweet in tweets]
-
-        # Return JSON response with all tweets
-        return jsonify(tweet_data), 200
-    except Exception as e:
-        # Log the exception for debugging purposes
-        app.logger.error(f"An error occurred while retrieving tweets: {e}")
-        # Return an error response
-        return jsonify({'error': 'An error occurred while retrieving tweets. Please try again later.'}), 500
-
 # Route to update a tweet
 @app.route('/tweets/<int:tweet_id>', methods=['PUT'])
 def update_tweet(tweet_id):
