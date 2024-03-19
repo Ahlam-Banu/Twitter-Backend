@@ -1,6 +1,7 @@
 # Microservice-based Tweeting Platform
 
 This project consists of several microservices designed to create a Twitter-like application. Each microservice handles specific functionalities, and communication between them is facilitated using RabbitMQ as the event bus.
+![diagram](https://github.com/Ahlam-Banu/Twitter-Backend/assets/102663986/4a30f1b9-aa84-4f72-bb9e-39576c9c2c7f)
 
 ## Microservices Overview
 
