@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>X-Clone Register</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+    		margin: 0; 
+    		display: flex;
+    		align-items: center; 
+    		justify-content: center; 
+    		height: 100vh;
+    		background-color: #f0f0f0;  
+    		padding: 0;    
+        }
+        
+        html { 
+    		height: 100%;  
+		}
+
+        .form-container {
+            background-color: #fbe4e4;
+            padding: 40px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 20px; 
+        }
+
+        .logo-container img {
+            width: 150px; /* Adjust width as needed */
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select { 
+            width: 100%; 
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 50px; 
+        }
+
+        .button {
+            background-color: black; 
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100px;        /* Keep buttons have the same length */
+        }
+        
+        .bold-label {
+    		font-weight: bold;
+		}
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="logo-container">
+            <img src="https://e0.pxfuel.com/wallpapers/517/24/desktop-wallpaper-pink-cat-beautiful-black-cats.jpg" alt="X-Clone Logo">
+        </div>
+
+        <h2>Create your account</h2>
+
+        <form>
+            <input type="text" id="name" name="name" placeholder="Name" required><br><br>
+
+            <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+
+            <label for="date-of-birth" class="bold-label">Date of Birth:</label><br>
+            <input type="text" id="month" name="month" placeholder="Month" required>
+			<input type="text" id="day" name="day" placeholder="Day" required> 
+			<input type="text" id="year" name="year" placeholder="Year" required> 
+<br><br>
+
+            <button class="button">Next</button>
+        </form>
+    </div>
+</body>
+</html>
