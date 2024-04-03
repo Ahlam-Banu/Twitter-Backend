@@ -27,8 +27,8 @@ def get_tweets(tweet_id):
             'likes_count': tweet.likes_count
         } for tweet in tweets]
         for tweet in tweet_data:
-            res = translate(tweet['tweet_content'])
-            print(tweet['tweet_content'])
+            res = translate(tweet['tweet_content'], source_lang='auto') # source language as 'auto' for automatic detection
+            print(tweet['tweet_content']) # tweet content is updated with translated text
             print(res)
         return jsonify(tweet_data), 200
         

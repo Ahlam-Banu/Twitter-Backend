@@ -5,10 +5,10 @@ from spyne.server.wsgi import WsgiApplication
 from googletrans import Translator
 
 class TranslateService(ServiceBase):
-    @rpc(Unicode, _returns=Unicode)
-    def translate_text(ctx, text):
+    @rpc(Unicode, Unicode, _returns=Unicode)  # Add another parameter for source language
+    def translate_text(ctx, text, source_lang):  # Add source_lang parameter
         translator = Translator()
-        translated_text = translator.translate(text, src='fi', dest='en')
+        translated_text = translator.translate(text, src=source_lang, dest='en')  # Use source_lang parameter
         return translated_text.text
 
 application = Application([TranslateService], 'translate_service',
