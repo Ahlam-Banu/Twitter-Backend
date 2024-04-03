@@ -65,5 +65,46 @@
             <button class="button">Log In</button>
         </form>
     </div>
+
+    <script>
+        const loginForm = document.querySelector('form');
+        const messagesDiv = document.getElementById('messages'); 
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/auth/login', { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json(); 
+                    throw new Error(errorData.message || 'Login failed');
+                }
+
+                // Login Success!
+                // Assuming API returns some user data or a token
+                const userData = await response.json(); 
+                console.log("Login successful, data:", userData); 
+
+                //  Store user data/token (e.g., in localStorage) for future use
+
+                // Redirect to the main application page
+                window.location.href = 'dashboard.html'; // Replace with the correct page
+
+            } catch (error) {
+                const errorMessage = document.createElement('div');
+                errorMessage.classList.add('error-message'); 
+                errorMessage.textContent = error.message; 
+                messagesDiv.appendChild(errorMessage); 
+            }
+        });
+    </script>
 </body>
 </html>
