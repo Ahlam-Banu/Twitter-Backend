@@ -1,3 +1,4 @@
+# server.py can run from almost any location, want to dockerize this seperately ?
 from spyne import Application, rpc, ServiceBase, Unicode, ComplexModel
 from spyne.protocol.soap import Soap11
 from spyne.server.wsgi import WsgiApplication
