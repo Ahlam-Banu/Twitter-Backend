@@ -97,15 +97,14 @@
                     },
                     body: JSON.stringify(formData)
                 });
-
+            
                 if (!response.ok) {
                     throw new Error('Signup failed');
                 }
-
-                // Signup successful, handle response as needed
-                const responseData = await response.json();
-                console.log('Signup successful:', responseData);
-                // Redirect user or show success message
+            
+                // Signup successful! Redirect to login page 
+                window.location.href = 'login.html'; // Replace with your login page filename 
+            
             } catch (error) {
                 console.error('Signup error:', error);
                 // Display error message to the user
