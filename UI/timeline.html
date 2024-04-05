@@ -62,19 +62,80 @@
 </head>
 <body>
   <div class="timeline-container">
-    <div class="tweet">
-      <div class="user-header">
-        <span class="username">@codingcat</span>
-        <span class="timestamp">10 minutes ago</span>
       </div>
-      <div class="tweet-content">
-        Learning to build awesome Twitter timelines with HTML and CSS! #webdev #frontend 
-      </div>
-      <div class="tweet-actions">
-        <button class="like-button">♥</button> 
-        <button class="comment-button">💬</button>
-      </div>
-    </div>
-    </div>
+
+  <form id="create-tweet-form">
+      <input type="text" id="tweet-content-input" placeholder="What's happening?">
+      <button type="submit">Tweet</button>
+  </form>
+
+  <script>
+      const baseUrl = 'http://localhost:5000/tweets';
+
+      // Generic API Request Function
+      async function makeTweetApiRequest(method, url, data = null) {
+          const headers = { 'Content-Type': 'application/json' };
+
+          const response = await fetch(url, {
+              method: method,
+              headers: headers,
+              body: data ? JSON.stringify(data) : null
+          });
+
+          if (!response.ok) {
+              throw new Error(`API Error: ${response.status}`);
+          }
+
+          return await response.json(); 
+      }
+
+      // Fetch and Display Tweets
+      async function fetchAndDisplayTweets() {
+          const timelineContainer = document.querySelector('.timeline-container'); 
+          timelineContainer.innerHTML = ''; // Clear existing tweets
+
+          try {
+              const tweetsData = await makeTweetApiRequest('GET', baseUrl);
+
+              tweetsData.forEach(tweet => {
+                  const tweetElement = `
+                      <div class="tweet">
+                          <div class="user-header">
+                              <span class="username">@${tweet.username}</span> 
+                              <span class="timestamp">${tweet.timestamp}</span> 
+                          </div>
+                          <div class="tweet-content">${tweet.tweet_content}</div>
+                          <div class="tweet-actions"> 
+                              <button class="like-button">♥ (${tweet.likes_count})</button>
+                          </div> 
+                      </div>`;
+                  timelineContainer.innerHTML += tweetElement;
+              });
+
+          } catch (error) {
+              console.error("Error fetching tweets:", error);
+          }
+      }
+
+      // Create Tweet
+      document.getElementById('create-tweet-form').addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const content = document.getElementById('tweet-content-input').value;
+
+          try {
+              const result = await makeTweetApiRequest('POST', baseUrl, { 
+                  user_id: 1, // Replace with actual user ID mechanism
+                  tweet_content: content 
+              }); 
+              console.log("Tweet created:", result);
+              fetchAndDisplayTweets(); // Refresh tweets
+          } catch (error) {
+              console.error("Error creating tweet:", error);
+          }
+      });
+
+      // Initial Tweet Load
+      fetchAndDisplayTweets();  
+  </script>
 </body>
 </html>
