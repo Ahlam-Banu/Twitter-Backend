@@ -16,11 +16,10 @@ function TweetForm({ addTweet }) {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="What's on your mind?"
-        rows="3"
+        rows="5"
         required
       />
       <br />
-      <button type="submit">Tweet</button>
     </form>
   );
 }
