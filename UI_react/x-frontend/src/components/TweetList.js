@@ -5,7 +5,7 @@ function TweetList({ tweets }) {
   return (
     <div className="tweet-list">
       {tweets.map(tweet => (
-        <Tweet key={tweet.id} tweet={tweet} />
+        <Tweet key={tweet.tweet_id} tweet={tweet} />
       ))}
     </div>
   );

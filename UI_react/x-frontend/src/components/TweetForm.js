@@ -2,29 +2,20 @@ import React, { useState } from 'react';
 
 function TweetForm({ addTweet }) {
   const [text, setText] = useState('');
-  const [user, setUser] = useState(''); // Add state for user
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTweet(text, user); // Pass user to addTweet function
+    const user = localStorage.getItem('username'); // Get username from localStorage
+    addTweet(text, user);
     setText('');
-    setUser(''); // Clear user input after submitting
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={user}
-        onChange={(e) => setUser(e.target.value)}
-        placeholder="Enter your name"
-        required
-      />
-      <br />
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="What's happening?"
+        placeholder="What's on your mind?"
         rows="3"
         required
       />
