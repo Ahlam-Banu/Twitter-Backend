@@ -1,12 +1,14 @@
+/* Styles for the main container of the app */
 .app-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Align children to the start of the container */
   align-items: center;
-  min-height: 100vh;
-  background-color: #fbe4e4;
+  min-height: 100vh; /* Minimum height to fill the viewport */
+  background-color: #fbe4e4; /* Background color */
 }
 
+/* Styles for the top container of the app */
 .top-container {
   display: flex; /* Use flexbox for positioning */
   justify-content: flex-start; /* Align items to the start of the container */
@@ -14,10 +16,12 @@
   width: 100%; /* Make the top container full width */
 }
 
+/* Styles for the logo */
 .logo {
-  width: 75px;
+  width: 75px; /* Set the width of the logo */
 }
 
+/* Styles for the main content of the app */
 .app-content {
   display: flex;
   flex-direction: column;
@@ -27,6 +31,7 @@
   margin: 20px auto; /* Center the content horizontally */
 }
 
+/* Styles for the tweet box */
 .tweet-box {
   background-color: #fbe4e4;
   padding: 20px;
@@ -34,9 +39,9 @@
   border-radius: 100px;
 }
 
-/* Add styles for modal */
+/* Styles for the modal */
 .modal {
-  position: fixed;
+  position: fixed; /* Position fixed to cover the entire screen */
   top: 0;
   left: 0;
   width: 100%;
@@ -47,6 +52,7 @@
   align-items: center;
 }
 
+/* Styles for the content inside the modal */
 .modal-content {
   background-color: #fbe4e4;
   padding: 20px;
@@ -55,35 +61,40 @@
   max-width: 600px; /* Set maximum width to limit box width */
 }
 
+/* Styles for the textarea inside the modal */
 .modal-content textarea {
   width: 100%;
   margin-bottom: 10px;
 }
 
+/* Styles for the buttons inside the modal */
 .modal-buttons {
   display: flex;
   justify-content: space-between;
 }
 
+/* Styles for each button inside the modal */
 .modal-buttons button {
   padding: 10px 20px;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: pointer; /* Change cursor to pointer on hover */
 }
 
+/* Styles for the first button inside the modal */
 .modal-buttons button:first-child {
-  background-color: black; /* Facebook blue color */
+  background-color: black; /* Black color */
   color: #fff;
   border: none;
 }
 
+/* Styles for the last button inside the modal */
 .modal-buttons button:last-child {
   background-color: black; /* Light gray color */
   color: white;
   border: none;
 }
 
-/* Add styles for tweet box */
+/* Additional styles for the tweet box */
 .tweet-box {
   background-color: #fff;
   border: 1px solid #ccc;
@@ -95,6 +106,7 @@
   margin: 0 auto; /* Center the box horizontally */
 }
 
+/* Styles for the input inside the tweet box */
 .tweet-box input {
   border: none;
   outline: none;
@@ -103,10 +115,12 @@
   color: #333;
 }
 
+/* Styles for the placeholder text inside the tweet box input */
 .tweet-box input::placeholder {
   color: #999;
 }
 
+/* Styles for the tweet box on hover */
 .tweet-box:hover {
   border-color: #999;
 }
