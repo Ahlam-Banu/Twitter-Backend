@@ -11,14 +11,12 @@ import (
 var db *sql.DB
 
 func initDB() {
-	// Connect to MariaDB database
 	var err error
 	db, err = sql.Open("mysql", "e2102970:KzdSPp6dy6a@tcp(localhost:3306)/e2102970_Go")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Check if the database connection is successful
 	err = db.Ping()
 	if err != nil {
 		log.Fatal(err)
@@ -33,26 +31,24 @@ func closeDB() {
 	}
 }
 
-// Example function to create a new user in the database
-func createUser(username string) error {
-	_, err := db.Exec("INSERT INTO test1 (id, username) VALUES (?, ?)", generateUUID(), username)
-	if err != nil {
-		return err
-	}
-	return nil
+type User struct {
+	ID        string   `json:"id"`
+	Username  string   `json:"username"`
+	Followers []string `json:"followers"`
+	Following []string `json:"following"`
 }
 
-// Example function to follow a user
-func followUser(followerID string, followeeID string) error {
-	_, err := db.Exec("INSERT INTO test2 (follower_id, followee_id) VALUES (?, ?)", followerID, followeeID)
-	if err != nil {
-		return err
-	}
-	return nil
-}
+func getUser(userID string) (User, error) {
+	// Implement logic to fetch user data from the database
+	// Here you would execute a SQL query to retrieve user data based on the provided userID
 
-// Example function to generate UUID
-func generateUUID() string {
-	// Implement UUID generation logic here
-	return "generated_uuid"
+	// For demonstration purposes, let's assume we have a hard-coded user
+	user := User{
+		ID:        userID,
+		Username:  "example_user",
+		Followers: []string{"follower1", "follower2"},
+		Following: []string{"following1", "following2"},
+	}
+
+	return user, nil
 }
