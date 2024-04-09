@@ -1,12 +1,7 @@
 from flask import jsonify, request
-from timeline_ms import app
+from . import app  # Adjusted import
 from .timeline_model import Timeline
-from peewee import DoesNotExist
-
-from flask import jsonify, request
-from timeline_ms import app
-from .timeline_model import Timeline
-from ..tweet_ms.tweet_model import Tweet
+from tweet_ms.tweet_model import Tweet  # Adjusted import
 from peewee import DoesNotExist
 
 # Route to retrieve all tweets in the timeline for a specific user
