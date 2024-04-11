@@ -10,8 +10,15 @@ COPY . /app
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port on which the Flask app will run
-EXPOSE 5000
+# Set Flask app environment variable
+ENV FLASK_APP="tweet_ms"
 
-# Command to run the Flask application
-CMD ["python", "-m", "tweet_routes"]
+# Run the application
+CMD ["flask", "run"]
+# CMD ["flask", "run", "--host=0.0.0.0"]
+
+# # Expose the port on which the Flask app will run
+# EXPOSE 5000
+
+# # Command to run the Flask application
+# CMD ["python", "-m", "tweet_routes"]
