@@ -27,9 +27,10 @@ def get_tweets(tweet_id):
             'likes_count': tweet.likes_count
         } for tweet in tweets]
         for tweet in tweet_data:
-            res = translate(tweet['tweet_content'], source_lang='auto') # source language as 'auto' for automatic detection
+            res = translate(tweet['tweet_content'])
+            # res = translate(tweet['tweet_content'], source_lang='auto') # source language as 'auto' for automatic detection
             print(tweet['tweet_content']) # tweet content is updated with translated text
-            print(res)
+            print(res) # THIS WILL BE SENT TO TIMELINE MS
         return jsonify(tweet_data), 200
         
     except DoesNotExist:
@@ -57,13 +58,13 @@ def delete_tweet(tweet_id):
     except DoesNotExist:
         return jsonify({'error': 'Tweet not found'}), 404
 
-# Route to like/unlike a tweet
-@app.route('/tweets/<int:tweet_id>/like', methods=['POST'])
-def like_tweet(tweet_id):
-    try:
-        tweet = Tweet.get(Tweet.tweet_id == tweet_id)
-        tweet.likes_count += 1
-        tweet.save()
-        return jsonify({'message': 'Tweet liked successfully'}), 200
-    except DoesNotExist:
-        return jsonify({'error': 'Tweet not found'}), 404
+# # Route to like/unlike a tweet
+# @app.route('/tweets/<int:tweet_id>/like', methods=['POST'])
+# def like_tweet(tweet_id):
+#     try:
+#         tweet = Tweet.get(Tweet.tweet_id == tweet_id)
+#         tweet.likes_count += 1
+#         tweet.save()
+#         return jsonify({'message': 'Tweet liked successfully'}), 200
+#     except DoesNotExist:
+#         return jsonify({'error': 'Tweet not found'}), 404

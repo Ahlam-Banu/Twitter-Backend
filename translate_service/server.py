@@ -1,14 +1,14 @@
-# server.py can run from almost any location, want to dockerize this seperately ?
+# server.py 
 from spyne import Application, rpc, ServiceBase, Unicode
 from spyne.protocol.soap import Soap11
 from spyne.server.wsgi import WsgiApplication
 from googletrans import Translator
 
 class TranslateService(ServiceBase):
-    @rpc(Unicode, Unicode, _returns=Unicode)  
-    def translate_text(cls, ctx, text, source_lang):
+    @rpc(Unicode, _returns=Unicode)  
+    def translate_text(self, text):
         translator = Translator()
-        translated_text = translator.translate(text, src=source_lang, dest='en')
+        translated_text = translator.translate(text, dest='en')
         return translated_text.text
 
 application = Application([TranslateService], 'translate_service',
