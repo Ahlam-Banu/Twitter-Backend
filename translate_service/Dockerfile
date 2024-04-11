@@ -1,17 +1,17 @@
-# Use the official Python image as the base image
-FROM python:3.8
+# Use an official Python runtime as a parent image
+FROM python:3.9
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the local codebase into the container at /app
+# Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install any additional dependencies
-# RUN pip install ...
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose any ports if required
-# EXPOSE ...
+# Expose the port the app runs on
+EXPOSE 9000
 
-# Command to run the service
+# Run server.py when the container launches
 CMD ["python", "server.py"]
