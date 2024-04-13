@@ -1,18 +1,23 @@
-version: "3"
+version: '3.8'
+
 services:
-  mariadb:
-    image: mariadb
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_DATABASE=
-      - MYSQL_DATABASE=user_service_db
-      - MYSQL_ROOT_PASSWORD=Allahho123
-  userauth:
-    build: .
+  users-service:
+    image: user-service
     ports:
       - "8082:8082"
-    environment:
-      - spring.data.host=localhost
     depends_on:
       - mariadb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/user_service_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Allahho123
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Allahho123
+      MYSQL_DATABASE: user_service_db
+    ports:
+      - "3306:3306"
