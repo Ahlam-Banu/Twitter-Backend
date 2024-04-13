@@ -1,0 +1,40 @@
+/* components/Tweet.css */
+
+.tweet {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info {
+  align-self: flex-start;
+  margin-bottom: 5px;
+}
+
+.posted-time {
+  align-self: flex-end;
+  margin-bottom: 5px;
+}
+
+.tweet-content {
+  margin-bottom: 10px;
+}
+
+.interaction-section button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.comments .comment {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
+}

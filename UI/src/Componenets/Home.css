@@ -1,0 +1,12 @@
+/* components/Home.css */
+
+.tweets {
+    margin-top: 20px;
+  }
+  /* components/Home.css */
+
+.Home {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
