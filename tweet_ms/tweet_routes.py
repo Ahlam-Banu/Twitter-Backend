@@ -57,13 +57,13 @@ def delete_tweet(tweet_id):
     except DoesNotExist:
         return jsonify({'error': 'Tweet not found'}), 404
 
-# Route to like/unlike a tweet
-@app.route('/tweets/<int:tweet_id>/like', methods=['POST'])
-def like_tweet(tweet_id):
-    try:
-        tweet = Tweet.get(Tweet.tweet_id == tweet_id)
-        tweet.likes_count += 1
-        tweet.save()
-        return jsonify({'message': 'Tweet liked successfully'}), 200
-    except DoesNotExist:
-        return jsonify({'error': 'Tweet not found'}), 404
+# # Route to like/unlike a tweet
+# @app.route('/tweets/<int:tweet_id>/like', methods=['POST'])
+# def like_tweet(tweet_id):
+#     try:
+#         tweet = Tweet.get(Tweet.tweet_id == tweet_id)
+#         tweet.likes_count += 1
+#         tweet.save()
+#         return jsonify({'message': 'Tweet liked successfully'}), 200
+#     except DoesNotExist:
+#         return jsonify({'error': 'Tweet not found'}), 404
