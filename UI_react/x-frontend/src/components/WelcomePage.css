@@ -1,0 +1,44 @@
+body {
+    background-color: #fbe4e4;    
+    font-family: 'Open Sans', sans-serif;
+    display: flex; 
+    height: 100vh;
+    margin: 0;
+}
+
+.container { 
+    display: flex;
+    align-items: center;  
+    justify-content: space-around; 
+    width: 80%; 
+    margin: 0 auto; 
+}
+
+img {
+    width: 300px; 
+}
+
+.content {
+    text-align: center;
+}
+
+h1 { 
+    font-size: 3em; 
+}
+
+p {
+    font-size: 1.2em; 
+    margin-bottom: 20px; 
+}
+
+.button {
+    background-color: black; 
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-bottom: 15px; 
+    width: 150px; 
+}

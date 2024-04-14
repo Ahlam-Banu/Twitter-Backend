@@ -3,6 +3,7 @@ from flask import jsonify, request
 from tweet_ms import app
 from .tweet_model import Tweet
 from peewee import DoesNotExist
+from .translator import translate
 
 # Route to handle tweet creation
 @app.route('/tweets', methods=['POST'])
@@ -14,10 +15,10 @@ def create_tweet():
     return jsonify({'message': 'Tweet created successfully', 'tweet_id': new_tweet.tweet_id}), 201
 
 # Route to handle tweet retrieval for a specific user
-@app.route('/tweets/<int:user_id>', methods=['GET'])
-def get_tweets(user_id):
+@app.route('/tweets/<int:tweet_id>', methods=['GET'])
+def get_tweets(tweet_id):
     try:
-        tweets = Tweet.select().where(Tweet.user_id == user_id)
+        tweets = Tweet.select().where(Tweet.tweet_id == tweet_id)
         tweet_data = [{
             'tweet_id': tweet.tweet_id,
             'user_id': tweet.user_id,
@@ -25,7 +26,12 @@ def get_tweets(user_id):
             'timestamp': tweet.timestamp.strftime('%Y-%m-%d %H:%M:%S'),  # Format timestamp as string
             'likes_count': tweet.likes_count
         } for tweet in tweets]
+        for tweet in tweet_data:
+            res = translate(tweet['tweet_content'], source_lang='auto') # source language as 'auto' for automatic detection
+            print(tweet['tweet_content']) # tweet content is updated with translated text
+            print(res)
         return jsonify(tweet_data), 200
+        
     except DoesNotExist:
         return jsonify({'message': 'No tweets found for the specified user'}), 404
 
