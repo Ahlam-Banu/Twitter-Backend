@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   users-service:
-    image: user-service
+    image: user_ms
     ports:
       - "8082:8082"
     depends_on:
@@ -10,14 +10,34 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/user_service_db
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: Allahho123
+      SPRING_DATASOURCE_PASSWORD: mypass
+
+  tweet_ms:
+    build:
+      context: ../tweet_ms
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"
+    # volumes:
+    #   - ../tweet_ms:./app/tweet_ms
+    depends_on:
+      - mariadb
+    environment:
+      - WSDL_URL=http://translate:9000/?wsdl
+
+  translate:
+    build:
+     context: ../translate_service/
+     dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
 
   mariadb:
     container_name: mariadb
     image: mariadb:10.3
-    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Allahho123
-      MYSQL_DATABASE: user_service_db
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=mypass
     ports:
       - "3306:3306"
+      
