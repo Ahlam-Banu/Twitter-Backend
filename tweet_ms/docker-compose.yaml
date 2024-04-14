@@ -8,9 +8,12 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/app
+      - .:/app/tweet_ms
     depends_on:
       - mariadb
+    environment:
+      - WSDL_URL=http://translate:9000/?wsdl
+
       
   mariadb:
     container_name: mariadb
@@ -18,9 +21,14 @@ services:
     environment:
       - MYSQL_DATABASE=Tweet_DB
       - MYSQL_USER=root
-      - MYSQL_PASSWORD=mypass
       - MYSQL_ROOT_PASSWORD=mypass
     ports:
       - "3306:3306"
       
-  
+  translate:
+    build:
+      context: ../translate_service/
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    

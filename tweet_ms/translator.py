@@ -1,11 +1,11 @@
-#import logging
+import logging
 from zeep import Client
 # from requests.exceptions import ConnectionError
 
 # Set up logging
-#logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 
-wsdl_url = 'http://localhost:9000/?wsdl'
+wsdl_url = 'http://translate:9000/?wsdl'
 
 def translate(text_to_translate, source_lang):
     try:
