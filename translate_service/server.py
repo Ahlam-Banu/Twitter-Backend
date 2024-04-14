@@ -1,4 +1,4 @@
-# server.py can run from almost any location, want to dockerize this seperately ?
+# server.py can run from almost any location, want to dockerize this separately?
 from spyne import Application, rpc, ServiceBase, Unicode, ComplexModel
 from spyne.protocol.soap import Soap11
 from spyne.server.wsgi import WsgiApplication
@@ -17,5 +17,6 @@ application = Application([TranslateService], 'translate_service',
 
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
-    server = make_server('0.0.0.0', 8000, WsgiApplication(application))
+    server = make_server('0.0.0.0', 9000, WsgiApplication(application))
+    print("Server started successfully. Listening on port 9000...")
     server.serve_forever()
