@@ -1,11 +1,11 @@
-export async function createTweet(content: string, authorId: number){
+export async function createTweet(tweet_content: string, user_id: number){
     try {
-      const response = await fetch('http://localhost:3005/tweets/add', {
+      const response = await fetch('http://localhost:5000/tweets', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ content, authorId }),
+        body: JSON.stringify({ tweet_content, user_id }),
       });
       if (!response.ok) {
         throw new Error('Failed to create tweet');

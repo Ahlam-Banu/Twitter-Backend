@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './Tweet.css';
 import { translateContent } from '../../API/SoapAPI';
+import heart_icon from '../../heart-icon.png'
+import comment_icon from '../../comment.png'
+
 
 interface Comment {
   userName: string;
@@ -25,7 +28,7 @@ const Tweet: React.FC<TweetProps> = ({ userName, createdAt, authorId, content, l
 
 
   // Construct author name with ID
-  const authorName = authorId === 1100 ? `Hamood (${authorId})` : `Unknown (${authorId})`;
+  const authorName = authorId === 1100 ? `Ahlam (${authorId})` : `Unknown (${authorId})`;
 
   // Convert single comment string to an array
   const commentsArray: Comment[] | undefined = typeof comments === 'string' ? [{ userName: 'null', createdAt: 'null', content: comments }] : comments;
@@ -50,14 +53,15 @@ const Tweet: React.FC<TweetProps> = ({ userName, createdAt, authorId, content, l
         <div className="translated-content">Translated: {translatedContent}</div>
       )}
       <div className="interaction-section">
-        <button onClick={onLike}>Like ({likes})</button>
+      <img src={heart_icon} alt="Like" onClick={onLike} className="h-icon"/>
+        <span>({likes})</span>
         <button onClick={() => {
           const comment = prompt('Enter your comment:');
           if (comment) {
             onComment(comment);
           }
-        }}>Comment</button>
-        <button onClick={handleTranslate}>Translate </button>
+        }}><img src={comment_icon} alt="Comment"/></button>
+          <button onClick={handleTranslate} className="translate-button">Translate Post</button>
       </div>
       <div className="comments">
         {Array.isArray(commentsArray) && commentsArray.map((comment, index) => (

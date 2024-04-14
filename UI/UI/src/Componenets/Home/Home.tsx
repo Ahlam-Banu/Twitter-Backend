@@ -42,7 +42,7 @@ const Home: React.FC = () => {
   const handleTweet = (content: string) => {
     if (content.trim() !== '') {
       const authorId = 1100; // Assuming author ID is hardcoded to 1100
-      const authorName = authorId === 1100 ? "Hamood" : "Unknown"; // Check if author ID is 1100
+      const authorName = authorId === 1100 ? "Ahlam" : "Unknown"; // Check if author ID is 1100
       const newTweet: Tweet = {
         id: Date.now(),
         userName: `${authorName} (${authorId})`,
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
       if (tweet.id === tweetId) {
         const newComment: Comment = {
           id: Date.now(),
-          userName: "Hamood (0011)",
+          userName: "Ahlam (0006)",
           createdAt: new Date().toISOString(), // Adjust to match JSON format
           content: content
         };
@@ -91,6 +91,7 @@ const Home: React.FC = () => {
     <div className="Home">
       <TopBar />
       <TweetBox onTweet={handleTweet} />
+      <hr className="divider" />
       <div className="tweets">
         {tweets.map(tweet => (
           <Tweet

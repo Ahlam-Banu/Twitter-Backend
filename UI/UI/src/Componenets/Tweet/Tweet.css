@@ -1,18 +1,24 @@
 /* components/Tweet.css */
 
 .tweet {
-  background-color: #fff;
+  background-color: #141d26;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
+  color: white;
 }
 
 .user-info {
   align-self: flex-start;
   margin-bottom: 5px;
+}
+
+.comment-user-info {
+  font-weight: bold; /* Make user info bold */
+  margin-bottom: 5px; /* Add margin below user info */
 }
 
 .posted-time {
@@ -32,9 +38,20 @@
 }
 
 .comments .comment {
-  background-color: #f9f9f9;
+  background-color: rgb(229, 227, 227);
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px;
   margin-top: 5px;
+  color: black;
+}
+
+.h-icon {
+  width: 20px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 3px;
+}
+
+.translate-button{
+  color: #1DA1F2;
 }

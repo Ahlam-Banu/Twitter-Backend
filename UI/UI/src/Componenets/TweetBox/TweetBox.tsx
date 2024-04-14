@@ -24,7 +24,7 @@ const TweetBox: React.FC<{ onTweet: (content: string) => void }> = ({ onTweet })
         value={tweetContent}
         onChange={e => setTweetContent(e.target.value)}
       ></textarea>
-      <button onClick={handleTweet}>Tweet</button>
+      <button onClick={handleTweet}>Post</button>
     </div>
   );
 };
