@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import TweetBox from './TweetBox';
-import Tweet from './Tweet';
+import TweetBox from '../TweetBox/TweetBox';
+import Tweet from '../Tweet/Tweet';
 import './Home.css';
-import TopBar from './TopBar';
-import { fetchTimeline, Tweet as TweetType } from '../API/timelineApi';
+import TopBar from '../TopBar/TopBar';
+import { fetchTimeline, Tweet as TweetType, Comment as CommentType } from '../../API/timelineApi';
 
 interface Comment {
   id: number;
@@ -17,59 +17,69 @@ interface Tweet {
   userName: string;
   content: string;
   createdAt: string;
-  likes: number;
-  comments: Comment[];
+  likes: number; // Update type to handle null values
+  comments: Comment[]; // Update type to handle null values
+  authorId: number;
 }
 
 const Home: React.FC = () => {
-  const [tweets, setTweets] = useState<Tweet[]>([]);
+  const [tweets, setTweets] = useState<TweetType[]>([]);
 
   useEffect(() => {
     const fetchTweets = async () => {
-      const tweets = await fetchTimeline();
-      //console.log(tweets)
-      setTweets(tweets);
+      try {
+        const tweetsData = await fetchTimeline();
+        setTweets(tweetsData);
+      } catch (error) {
+        console.error('Error fetching tweets:', error);
+      }
     };
 
     fetchTweets();
   }, []);
 
+
   const handleTweet = (content: string) => {
     if (content.trim() !== '') {
+      const authorId = 1100; // Assuming author ID is hardcoded to 1100
+      const authorName = authorId === 1100 ? "Hamood" : "Unknown"; // Check if author ID is 1100
       const newTweet: Tweet = {
         id: Date.now(),
-        userName: "John Doe",
+        userName: `${authorName} (${authorId})`,
         content: content,
-        createdAt: new Date().toLocaleString(),
+        createdAt: new Date().toISOString(),
         likes: 0,
         comments: [],
+        authorId: authorId, // Set the authorId property
       };
       setTweets([newTweet, ...tweets]);
     }
   };
+  
 
   const handleLike = (id: number) => {
     setTweets(tweets.map(tweet => {
       if (tweet.id === id) {
-        return { ...tweet, likes: tweet.likes + 1 };
+        // Ensure likes is not null before incrementing
+        const newLikes = tweet.likes !== null ? tweet.likes + 1 : 1;
+        return { ...tweet, likes: newLikes };
       }
       return tweet;
     }));
   };
+
   const handleComment = (tweetId: number, content: string) => {
     setTweets(tweets.map(tweet => {
       if (tweet.id === tweetId) {
         const newComment: Comment = {
           id: Date.now(),
-          userName: "Jane Doe",
-          createdAt: new Date().toLocaleString(),
+          userName: "Hamood (0011)",
+          createdAt: new Date().toISOString(), // Adjust to match JSON format
           content: content
         };
   
         // Concatenate the new comment with the existing comments array
-        const updatedComments = tweet.comments ? [...tweet.comments, newComment] : [newComment];
-        console.log(newComment)
-        console.log(tweet.comments); // Log existing comments before update
+        const updatedComments = tweet.comments !== null ? [...tweet.comments, newComment] : [newComment];
   
         return { ...tweet, comments: updatedComments };
       }
@@ -86,12 +96,13 @@ const Home: React.FC = () => {
           <Tweet
             key={tweet.id}
             userName={tweet.userName}
+            authorId={tweet.authorId} // Pass the authorId prop
             createdAt={tweet.createdAt}
             content={tweet.content}
-            likes={tweet.likes}
-            comments={tweet.comments}
+            likes={tweet.likes !== null ? tweet.likes : 0} // Handle null likes
+            comments={tweet.comments !== null ? tweet.comments : []} // Handle null comments
             onLike={() => handleLike(tweet.id)}
-            onComment={(comment) => handleComment(tweet.id, comment)}
+            onComment={(comment: string) => handleComment(tweet.id, comment)}
           />
         ))}
       </div>

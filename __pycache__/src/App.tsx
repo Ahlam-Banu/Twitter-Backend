@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './Componenets/Home';
+import Home from './Componenets/Home/Home';
 
 const App: React.FC = () => {
   return (
