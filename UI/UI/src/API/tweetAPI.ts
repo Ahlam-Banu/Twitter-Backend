@@ -1,6 +1,6 @@
 export async function createTweet(tweet_content: string, user_id: number){
     try {
-      const response = await fetch('http://localhost:5000/tweets', {
+      const response = await fetch('http://localhost:5005/tweets', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
