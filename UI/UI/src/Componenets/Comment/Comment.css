@@ -1,0 +1,11 @@
+/* components/Comment.css */
+
+.comment {
+    background-color: grey;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    color: black;
+  }
+  
