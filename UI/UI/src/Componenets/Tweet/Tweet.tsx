@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Tweet.css';
 import { translateContent } from '../../API/SoapAPI';
-import heart_icon from '../../heart-icon.png'
-import comment_icon from '../../comment.png'
+import heart_icon from '../../images/heart-icon.png'
+import comment_icon from '../../images/comment.png'
 
 
 interface Comment {
