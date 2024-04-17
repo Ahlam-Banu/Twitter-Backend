@@ -46,7 +46,7 @@ TO BE ADDED
 - [Link to Follow Service API Documentation]
 - [Link to Gateway Service API Documentation]
 - [Link to Fanout Service API Documentation]
-- [Link to Comment Service API Documentation]
+- [Link to Comment Service API Documentation](Comment-Service/Comment_ms/api.md)
 
 ## Testing
 
