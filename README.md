@@ -45,7 +45,8 @@ TO BE ADDED
 - [Link to Timeline Service API Documentation]
 - [Link to Follow Service API Documentation]
 - [Link to Gateway Service API Documentation]
-- [Link to Fanout Service API Documentation](Comment_ms/api.md)
+- [Link to Fanout Service API Documentation]
+- [Link to Comment Service API Documentation](/Comment-Service/Comments_ms)
 
 ## Testing
 
