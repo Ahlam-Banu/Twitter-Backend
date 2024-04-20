@@ -1,0 +1,16 @@
+CREATE TABLE Tweet_DB.tweet (
+    tweet_id INT(11) AUTO_INCREMENT,
+    user_id INT(11),
+    tweet_content TEXT,
+    timestamp DATETIME,
+    likes_count INT(11),
+    PRIMARY KEY (tweet_id)
+);
+
+INSERT INTO Tweet_DB.tweet (tweet_id, user_id, tweet_content, timestamp, likes_count) VALUES
+(1, 123, 'This is updated tweet', '2024-03-05 21:29:17', 6),
+(2, 124, 'This is 2ND tweet.', '2024-03-05 21:29:55', 1),
+(3, 120, 'This is a test tweet.', '2024-03-06 18:37:59', 0),
+(4, 129, 'This is tweet from elon musk', '2024-03-12 00:29:00', 0),
+(6, 123, 'tämä on suomenkielistä tekstiä', '2024-03-30 14:31:46', 0),
+(7, 120, 'Este tweet fue en español.', '2024-04-03 12:53:50', 0);
