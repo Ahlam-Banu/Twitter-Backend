@@ -8,6 +8,7 @@ interface Comment {
 }
 
 interface TweetProps {
+  authorId: number;
   userName: string;
   createdAt: string;
   content: string;
@@ -17,7 +18,11 @@ interface TweetProps {
   onComment: (comment: string) => void;
 }
 
-const Tweet: React.FC<TweetProps> = ({ userName, createdAt, content, likes, comments, onLike, onComment }) => {
+const Tweet: React.FC<TweetProps> = ({ userName, createdAt, authorId, content, likes, comments, onLike, onComment }) => {
+  
+  // Construct author name with ID
+  const authorName = authorId === 1100 ? `Hamood (${authorId})` : `Unknown (${authorId})`;
+
   // Convert single comment string to an array
   const commentsArray: Comment[] | undefined = typeof comments === 'string' ? [{ userName: 'null', createdAt: 'null', content: comments }] : comments;
 
