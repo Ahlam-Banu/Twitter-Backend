@@ -1,7 +1,7 @@
 export async function translateContent(content: string) {
     try {
         
-        const url = 'http://localhost:8000/translate';
+        const url = 'http://localhost:8001/translate';
 
         const response = await fetch(url, {
             method: 'POST',

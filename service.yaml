@@ -67,3 +67,18 @@ spec:
       nodePort: 30006
   selector:
     io.kompose.service: tweet-ms
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-service
+spec:
+  type: NodePort
+  ports:
+    - name: "8082"
+      port: 8082
+      targetPort: 8082
+      nodePort: 30007
+  selector:
+    io.kompose.service: users-service
