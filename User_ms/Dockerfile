@@ -4,7 +4,7 @@ FROM openjdk:17-jdk
 
 LABEL authors="jeem"
 # Set the working directory in the container
-WORKDIR /Users/jeem/Desktop/My Home /Web Services/Twitter-Backend/UserAuth
+WORKDIR  /Twitter-Backend/UserAuth
 # Copy the JAR file of your Spring Boot application to the container
 COPY target/UserAuth-0.0.1-SNAPSHOT.jar ./
 

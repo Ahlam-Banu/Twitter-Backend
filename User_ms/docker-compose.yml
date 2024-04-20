@@ -12,28 +12,10 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: mypass
 
-  tweet_ms:
-    build:
-      context: ../tweet_ms
-      dockerfile: Dockerfile
-    ports:
-      - "5001:5000"
-    # volumes:
-    #   - ../tweet_ms:./app/tweet_ms
-    depends_on:
-      - mariadb
-    environment:
-      - WSDL_URL=http://translate:9000/?wsdl
 
-  translate:
-    build:
-     context: ../translate_service/
-     dockerfile: Dockerfile
-    ports:
-      - "9000:9000"
 
   mariadb:
-    container_name: mariadb
+    container_name: mariadb-container
     image: mariadb:10.3
     environment:
       - MYSQL_USER=root

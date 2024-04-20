@@ -47,3 +47,14 @@ services:
     environment:
     - Translator_API=http://rabbitmq:5672/
     - wsdl_API=http://translator:9000/?wsdl
+
+  users-service:
+    image: user-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mariadb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/user_service_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mypass
