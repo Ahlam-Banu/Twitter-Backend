@@ -3,10 +3,12 @@ from flask import jsonify, request
 from tweet_ms import app
 from .tweet_model import Tweet
 from peewee import DoesNotExist
+#from flask_cors import CORS
 # from ..translate_service.translator import translate
 # from .translator import translate
 
 # Route to handle tweet creation
+#CORS(app)
 @app.route('/tweets', methods=['POST'])
 def create_tweet():
     data = request.json
