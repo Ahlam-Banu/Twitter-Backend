@@ -20,7 +20,7 @@ export interface Tweet {
   
   export async function fetchTimeline(): Promise<Tweet[]> {
     try {
-        const response = await fetch('http://localhost:5000/tweets');
+        const response = await fetch('http://localhost:30006/tweets');
         console.log("response: ", response)
         if (!response.ok) {
             throw new Error('Failed to fetch tweets');

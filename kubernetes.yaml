@@ -1,42 +1,47 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: twitterbackend-project
+  name: twitter-backend-pod
+  labels:
+    app: twitter-backend-pod
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: twitterbackend-project
-  template:
-    metadata:
-      labels:
-        app: twitterbackend-project
-    spec:
-      containers:
-        - name: mariadb
-          image: mariadb:10.3
-          env:
-            - name: MYSQL_DATABASE
-              value: Tweet_DB
-            - name: MYSQL_USER
-              value: root
-            - name: MYSQL_ROOT_PASSWORD
-              value: mypass
-          ports:
-            - containerPort: 3306
-        - name: rabbitmq
-          image: rabbitmq:3-management
-          ports:
-            - containerPort: 5672
-            - containerPort: 15672
-        - name: translate
-          image: twitterbackend-translate
-          imagePullPolicy: Never
-          ports:
-            - containerPort: 9000
-            - containerPort: 8000
-        - name: tweet-ms
-          image: twitterbackend-tweet_ms
-          imagePullPolicy: Never
-          ports:
-            - containerPort: 5000
+  containers:
+    - name: mariadb
+      image: mariadb:10.3
+      #imagePullPolicy: Never
+      env:
+        - name: MYSQL_DATABASE
+          value: Tweet_DB
+        - name: MYSQL_ROOT_PASSWORD
+          value: mypass
+        - name: MYSQL_USER
+          value: root
+      ports:
+        - containerPort: 3306
+    - name: rabbitmq
+      image: rabbitmq:3-management
+      #imagePullPolicy: Never
+      env:
+        - name: RABBITMQ_DEFAULT_PASS
+          value: guest
+        - name: RABBITMQ_DEFAULT_USER
+          value: guest
+      ports:
+        - containerPort: 5672
+        - containerPort: 15672
+    - name: translator
+      image: twitterbackend-translate
+      imagePullPolicy: Never
+      env:
+        - name: Translator_API
+          value: http://rabbitmq:5672/
+        - name: wsdl_API
+          value: http://translator:9000/?wsdl
+      ports:
+        - containerPort: 9000
+    - name: tweet-ms
+      image: twitterbackend-tweet_ms
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 5000
+  restartPolicy: Always
