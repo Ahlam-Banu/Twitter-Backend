@@ -7,7 +7,7 @@ CORS(app)
 
 def translate_text(text_to_translate):
     # URL of the WSDL file of the SOAP server
-    wsdl_url = 'http://localhost:9000/?wsdl'
+    wsdl_url = 'http://localhost:30004/?wsdl'
 
 
     # Create a Zeep client
