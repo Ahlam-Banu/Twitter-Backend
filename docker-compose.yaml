@@ -13,12 +13,12 @@ services:
 
   tweet_ms:
     build:
-      context: .
+      context: ./tweet_ms
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
     volumes:
-      - .:/app/tweet_ms
+      - ./tweet_ms:/app/tweet_ms
     depends_on:
       - mariadb
     # environment:
@@ -37,7 +37,7 @@ services:
       
   translate:
     build:
-      context: ../translate_service
+      context: ./translate_service
       dockerfile: Dockerfile
     ports:
       - "9000:9000"
