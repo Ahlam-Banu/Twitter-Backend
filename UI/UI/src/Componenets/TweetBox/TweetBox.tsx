@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './TweetBox.css'
 import { createTweet } from '../../API/tweetAPI';
 
-const TweetBox: React.FC<{ onTweet: (content: string) => void }> = ({ onTweet }) => {
+const TweetBox: React.FC<{ onTweet: (tweet_id: number, content: string) => void }> = ({ onTweet }) => {
   const [tweetContent, setTweetContent] = useState('');
 
   const handleTweet = async () => {
@@ -11,7 +11,7 @@ const TweetBox: React.FC<{ onTweet: (content: string) => void }> = ({ onTweet })
       const authorId = 1100; // Replace with the actual author ID
       await createTweet(tweetContent, authorId);
       
-      onTweet(tweetContent);
+      onTweet(0, tweetContent); // Update the onTweet function to accept two arguments
       setTweetContent('');
       
     }

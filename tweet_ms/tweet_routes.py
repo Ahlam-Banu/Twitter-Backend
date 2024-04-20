@@ -3,7 +3,8 @@ from flask import jsonify, request
 from tweet_ms import app
 from .tweet_model import Tweet
 from peewee import DoesNotExist
-from .translator import translate
+# from ..translate_service.translator import translate
+# from .translator import translate
 
 # Route to handle tweet creation
 @app.route('/tweets', methods=['POST'])
@@ -44,24 +45,27 @@ def get_tweets(tweet_id):
     except DoesNotExist:
         return jsonify({'message': 'No tweets found for the specified user'}), 404
 
-# @app.route('/tr/tweets/<int:tweet_id>', methods=['GET'])
-# def get_tr_tweets(tweet_id):
-#     try:
-#         tweets = Tweet.select().where(Tweet.tweet_id == tweet_id)
-#         tweet_data = [{
-#             'tweet_id': tweet.tweet_id,
-#             'user_id': tweet.user_id,
-#             'tweet_content': tweet.tweet_content,
-#             'timestamp': tweet.timestamp.strftime('%Y-%m-%d %H:%M:%S'),  # Format timestamp as string
-#             'likes_count': tweet.likes_count
-#         } for tweet in tweets]
-#         for tweet in tweet_data:
-#             res = translate(tweet['tweet_content'], source_lang='auto') # source language as 'auto' for automatic detection
-#             print(tweet['tweet_content']) # tweet content is updated with translated text
-#             return jsonify(res), 200
+#  @app.route('/tr/tweets/<int:tweet_id>', methods=['GET'])
+#  def get_tr_tweets(tweet_id):
+#      try:
+#          tweets = Tweet.select().where(Tweet.tweet_id == tweet_id)
+#          tweet_data = [{
+#              'tweet_id': tweet.tweet_id,
+#              'user_id': tweet.user_id,
+#              'tweet_content': tweet.tweet_content,
+#              'timestamp': tweet.timestamp.strftime('%Y-%m-%d %H:%M:%S'),  # Format timestamp as string
+#              'likes_count': tweet.likes_count
+#          } for tweet in tweets]
         
-    except DoesNotExist:
-        return jsonify({'message': 'No tweets found for the specified user'}), 404
+#          for tweet in tweet_data:
+#              res = translate(tweet['tweet_content'], source_lang='auto')  # source language as 'auto' for automatic detection
+#              tweet['tweet_content'] = res  # Update tweet content with translated text
+#              # Return the response immediately after translating the first tweet
+#              return jsonify(res), 200
+
+#      except DoesNotExist:
+#          return jsonify({'message': 'No tweets found for the specified user'}), 404
+
 
 # Route to update a tweet
 @app.route('/tweets/<int:tweet_id>', methods=['PUT'])

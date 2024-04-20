@@ -36,7 +36,10 @@ const Tweet: React.FC<TweetProps> = ({ userName, createdAt, authorId, content, l
   // Function to handle translation button click
   const handleTranslate = async () => {
     try {
+      
       const translatedText = await translateContent(content);
+      
+      // const translatedText = "mita"//await translateContent("mitä")
       setTranslatedContent(translatedText);
     } catch (error) {
       console.error('Error translating content:', error);

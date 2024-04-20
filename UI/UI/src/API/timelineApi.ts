@@ -1,12 +1,14 @@
 
 export interface Tweet {
-    id: number;
+    tweet_id: number;
+    // id: number;
     userName: string;
     content: string;
     createdAt: string;
     likes: number;
     comments: Comment[];
     authorId: number;
+    //translatedContent: string;
   }
   
   export interface Comment {
@@ -29,7 +31,7 @@ export interface Tweet {
         const tweets: Tweet[] = data.map((tweetData: any) => {
           
             return {
-                "id": tweetData["tweet_id"],
+                "tweet_id": tweetData["tweet_id"],
                 "userName": `user (${tweetData["user_id"]})`,
                 "content": tweetData["tweet_content"],
                 "createdAt": tweetData["timestamp"],

@@ -14,4 +14,4 @@ export async function createTweet(tweet_content: string, user_id: number){
       console.error('Error creating tweet:', error);
       throw error;
     }
-  }
+}
