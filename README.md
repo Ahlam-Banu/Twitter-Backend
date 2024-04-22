@@ -1,42 +1,50 @@
 # Microservice-based Tweeting Platform
 
-This project consists of several microservices designed to create a Twitter-like application. Each microservice handles specific functionalities, and communication between them is facilitated using RabbitMQ as the event bus.
-![diagram](https://github.com/Ahlam-Banu/Twitter-Backend/assets/102663986/4a30f1b9-aa84-4f72-bb9e-39576c9c2c7f)
+Microservices crafted to construct a Twitter-like platform. Each microservice is responsible for distinct functionalities, and communication is facilitated using RabbitMQ, functioning as the event bus.
 
 ## Microservices Overview
 
-1. **User Service: Java Spring boot**
+1. **User Service:**
+   - Using Java Spring boot
    - Handles user registration, authentication, and profile management.
 
-2. **Tweet Service: Python (Flask)**
+3. **Tweet Service:**
+   - Using Python (Flask)
    - Manages the creation, retrieval, and deletion of tweets.
 
-3. **Timeline Service: -**
+5. **Timeline Service: -**
+   - Python (Flask)
    - Aggregates and serves personalized timelines for users.
 
-4. **Follow Service: -**
+7. **Follow Service: -**
+   - Using GO Lang
    - Manages relationships between users, including following and followers.
 
-5. **Gateway Service: -**
+9. **Gateway Service: -**
    - Acts as an API gateway, routing requests to appropriate microservices and handling authentication.
 
-6. **Fanout Service: -**
+10. **Fanout Service: -**
    - Manages subscriptions and broadcasts events to subscribers.
+
+## Architecture
+![new architecture](https://github.com/Ahlam-Banu/Twitter-Backend/assets/102663986/0fc0b6b5-4f53-4272-a928-de08147b077c)
 
 ## Technologies Used
 
-- **Programming Languages:** [Java, Python, Node.js, Go]
-- **Databases:** [MariaDB]
+- **Programming Languages:** Java, Python, Go
+- **Databases:** MariaDB
 - **Event Bus:** RabbitMQ
 
-## Installation
+# Running in Kubernetes
 
-TO BE ADDED
+## Docker Desktop
+![kubernetes](https://github.com/Ahlam-Banu/Twitter-Backend/assets/102663986/dcb8d800-afb2-49d8-b136-403076ee0e10)
 
-## Inter-Microservice Communication
+## Terminal
+![kubernetes terminal](https://github.com/Ahlam-Banu/Twitter-Backend/assets/102663986/f2b399cc-a396-4011-9ae5-4f69b443fcc3)
 
-- **Event Bus:** RabbitMQ
-- Each microservice interacts with others via RabbitMQ, by publishing and subscribing to relevant events.
+## Output
+![twitter_ui](https://github.com/Ahlam-Banu/Twitter-Backend/assets/102663986/62439e49-0efc-466d-aba3-7f52dc2a7dab)
 
 ## API Endpoints
 
@@ -46,11 +54,17 @@ TO BE ADDED
 - [Link to Follow Service API Documentation]
 - [Link to Gateway Service API Documentation]
 - [Link to Fanout Service API Documentation]
-- [Link to Comment Service API Documentation](Comment-Service/docs)
+- [Link to Comment Service API Documentation](/docs/comment_api.md)
 
-## Testing
+## Usage
 
-TO BE ADDED
+- docker-compose up -d
+- kubectl apply -f kube_man.yaml
+- kubectl apply -f service.yaml   
+
+Navigate to UI and npm start
+   - username: Ahlam@email.com
+   - password: Pass1
 
 ## License
 
