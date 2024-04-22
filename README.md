@@ -44,8 +44,7 @@ Microservices crafted to construct a Twitter-like platform. Each microservice is
 ![kubernetes terminal](https://github.com/Ahlam-Banu/Twitter-Backend/assets/102663986/f2b399cc-a396-4011-9ae5-4f69b443fcc3)
 
 ## Output
-
-
+![twitter_ui](https://github.com/Ahlam-Banu/Twitter-Backend/assets/102663986/62439e49-0efc-466d-aba3-7f52dc2a7dab)
 
 ## API Endpoints
 
