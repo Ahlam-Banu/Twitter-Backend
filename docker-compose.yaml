@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.3
+    environment:
+      - MYSQL_DATABASE=Tweet_DB
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=mypass
+    ports:
+      - "3306:3306"
+
+  tweet_ms:
+    build:
+      context: ./tweet_ms
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./tweet_ms:/app/tweet_ms
+    depends_on:
+      - mariadb
+    # environment:
+    #   - WSDL_URL=http://translate:9000/?wsdl
+
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    ports:
+    - "5672:5672" # RabbitMQ messaging port
+    - "15672:15672" # RabbitMQ management UI port
+    environment:
+    - RABBITMQ_DEFAULT_USER=guest
+    - RABBITMQ_DEFAULT_PASS=guest
+      
+  translate:
+    build:
+      context: ./translate_service
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+      - "8001:8000"
+    depends_on:
+     - rabbitmq
+    environment:
+    - Translator_API=http://rabbitmq:5672/
+    - wsdl_API=http://translator:9000/?wsdl
+
+  users-service:
+    image: user-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mariadb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/user_service_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mypass

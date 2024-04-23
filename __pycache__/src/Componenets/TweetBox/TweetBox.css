@@ -1,0 +1,27 @@
+/* components/TweetBox.css */
+
+.tweet-box {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .tweet-box textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+  
+  .tweet-box button {
+    background-color: #00acee;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  

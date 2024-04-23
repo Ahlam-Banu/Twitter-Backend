@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  users-service:
+    image: user_ms
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mariadb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/user_service_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mypass
+
+
+
+  mariadb:
+    container_name: mariadb-container
+    image: mariadb:10.3
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=mypass
+    ports:
+      - "3306:3306"
+      

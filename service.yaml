@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+spec:
+  type: NodePort
+  ports:
+    - name: "3306"
+      port: 3306
+      targetPort: 3306
+      nodePort: 30001
+  selector:
+    io.kompose.service: mariadb
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+spec:
+  type: NodePort
+  ports:
+    - name: "5672"
+      port: 5672
+      targetPort: 5672
+      nodePort: 30002
+    - name: "15672"
+      port: 15672
+      targetPort: 15672
+      nodePort: 30003
+  selector:
+    io.kompose.service: rabbitmq
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: translate
+spec:
+  type: NodePort
+  ports:
+    - name: "9000"
+      port: 9000
+      targetPort: 9000
+      nodePort: 30004
+    - name: "8001"
+      port: 8001
+      targetPort: 8000
+      nodePort: 30005
+  selector:
+    io.kompose.service: translate
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: tweet-ms
+spec:
+  type: NodePort
+  ports:
+    - name: "5000"
+      port: 5000
+      targetPort: 5000
+      nodePort: 30006
+  selector:
+    io.kompose.service: tweet-ms
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-service
+spec:
+  type: NodePort
+  ports:
+    - name: "8082"
+      port: 8082
+      targetPort: 8082
+      nodePort: 30007
+  selector:
+    io.kompose.service: users-service
